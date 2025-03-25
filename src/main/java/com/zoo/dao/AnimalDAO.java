@@ -1,0 +1,106 @@
+package com.zoo.dao;
+
+import com.zoo.db.DatabaseConnection;
+import com.zoo.model.Animal;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+//Этот класс выполняет операции с животными в БД
+
+public class AnimalDAO {
+
+    public List<Animal> getAllAnimals() {
+        List<Animal> animals = new ArrayList<>();
+        String query = "SELECT * FROM animals";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                Animal animal = new Animal(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("species"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("habitat"),
+                        resultSet.getString("health_status")
+                );
+                animals.add(animal);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return animals;
+    }
+
+    public Animal getAnimalById(int id) {
+        String query = "SELECT * FROM animals WHERE id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return new Animal(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("species"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("habitat"),
+                        resultSet.getString("health_status")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addAnimal(Animal animal) {
+        String query = "INSERT INTO animals (name, species, age, habitat, health_status) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, animal.getName());
+            statement.setString(2, animal.getSpecies());
+            statement.setInt(3, animal.getAge());
+            statement.setString(4, animal.getHabitat());
+            statement.setString(5, animal.getHealthStatus());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAnimal(Animal animal) {
+        String query = "UPDATE animals SET name = ?, species = ?, age = ?, habitat = ?, health_status = ? WHERE id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, animal.getName());
+            statement.setString(2, animal.getSpecies());
+            statement.setInt(3, animal.getAge());
+            statement.setString(4, animal.getHabitat());
+            statement.setString(5, animal.getHealthStatus());
+            statement.setInt(6, animal.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAnimal(int id) {
+        String query = "DELETE FROM animals WHERE id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
