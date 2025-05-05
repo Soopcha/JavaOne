@@ -7,9 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 //Этот класс выполняет операции с животными в БД
+//http://localhost:8080/JavaOne_war_exploded/animals
 
+// Этот класс выполняет CRUD-операции с таблицей animals
 public class AnimalDAO {
 
+    // Получить список всех животных
     public List<Animal> getAllAnimals() {
         List<Animal> animals = new ArrayList<>();
         String query = "SELECT * FROM animals";
@@ -35,6 +38,7 @@ public class AnimalDAO {
         return animals;
     }
 
+    // Получить одно животное по ID
     public Animal getAnimalById(int id) {
         String query = "SELECT * FROM animals WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -59,7 +63,8 @@ public class AnimalDAO {
         return null;
     }
 
-    public void addAnimal(Animal animal) {
+    // Вставить новое животное
+    public void insertAnimal(Animal animal) {
         String query = "INSERT INTO animals (name, species, age, habitat, health_status) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -75,6 +80,7 @@ public class AnimalDAO {
         }
     }
 
+    // Обновить животное
     public void updateAnimal(Animal animal) {
         String query = "UPDATE animals SET name = ?, species = ?, age = ?, habitat = ?, health_status = ? WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -92,6 +98,7 @@ public class AnimalDAO {
         }
     }
 
+    // Удалить животное
     public void deleteAnimal(int id) {
         String query = "DELETE FROM animals WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -104,3 +111,4 @@ public class AnimalDAO {
         }
     }
 }
+

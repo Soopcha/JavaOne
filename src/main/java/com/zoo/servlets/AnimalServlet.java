@@ -23,6 +23,8 @@ public class AnimalServlet extends HttpServlet {
     //метод срабатывает при GET-запросе
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // Получаем всех животных из базы данных
         AnimalDAO animalDAO = new AnimalDAO();
         List<Animal> animals = animalDAO.getAllAnimals();

@@ -12,8 +12,8 @@ public class Main {
 
         // Добавляем несколько животных
         AnimalDAO animalDAO = new AnimalDAO();
-        animalDAO.addAnimal(new Animal("Лев", "Потомок льва", 5, "Савана", "Здоров"));
-        animalDAO.addAnimal(new Animal("Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
+        animalDAO.insertAnimal(new Animal("Лев", "Потомок льва", 5, "Савана", "Здоров"));
+        animalDAO.insertAnimal(new Animal("Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
 
         // Выводим все животных
         System.out.println("Все животные:");
