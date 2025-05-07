@@ -46,7 +46,17 @@
     </dependency>
 
   </dependencies>
+
   <build>
     <finalName>JavaOne</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*</include> <!-- Включаем все файлы -->
+        </includes>
+      </resource>
+    </resources>
   </build>
 </project>
