@@ -12,11 +12,11 @@ import java.io.IOException;
 public class AnimalActionServlet extends HttpServlet {
 
 
-    private AnimalDAO animalDao;
+    private AnimalDAO animalDAO;
 
     @Override
     public void init() {
-        animalDao = new AnimalDAO();
+        animalDAO = AnimalDAO.getInstance();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class AnimalActionServlet extends HttpServlet {
 
         if ("delete".equals(action)) {
             // Удаление
-            animalDao.deleteAnimal(id);
+            animalDAO.deleteAnimal(id);
         } else {
             // Получаем остальные параметры
             String name = request.getParameter("name");
@@ -43,10 +43,10 @@ public class AnimalActionServlet extends HttpServlet {
 
             if (id == 0) {
                 // Добавление нового животного
-                animalDao.insertAnimal(animal);
+                animalDAO.insertAnimal(animal);
             } else {
                 // Обновление существующего
-                animalDao.updateAnimal(animal);
+                animalDAO.updateAnimal(animal);
             }
         }
 

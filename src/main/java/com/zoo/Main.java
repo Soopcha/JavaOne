@@ -10,10 +10,12 @@ public class Main {
         // Устанавливаем соединение с базой данных
         DatabaseConnection.getConnection();
 
+        // Получаем экземпляр AnimalDAO через синглтон
+        AnimalDAO animalDAO = AnimalDAO.getInstance();
+
         // Добавляем несколько животных
-        AnimalDAO animalDAO = new AnimalDAO();
-        animalDAO.insertAnimal(new Animal("Лев", "Потомок льва", 5, "Савана", "Здоров"));
-        animalDAO.insertAnimal(new Animal("Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
+        animalDAO.insertAnimal(new Animal(0, "Лев", "Потомок льва", 5, "Савана", "Здоров"));
+        animalDAO.insertAnimal(new Animal(0, "Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
 
         // Выводим все животных
         System.out.println("Все животные:");
@@ -43,5 +45,6 @@ public class Main {
 //        int animalIdToDelete = 2; // животное с id 2
 //        animalDAO.deleteAnimal(animalIdToDelete);
 //        System.out.println("Животное с ID " + animalIdToDelete + " было удалено.");
+
     }
 }

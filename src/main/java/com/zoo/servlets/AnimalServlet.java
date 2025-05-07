@@ -19,22 +19,24 @@ import java.util.List;
 //Передаёт этот список на страницу animals.jsp, где они отображаются
 
 public class AnimalServlet extends HttpServlet {
+    private AnimalDAO animalDAO;
 
-    //метод срабатывает при GET-запросе
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void init() throws ServletException {
+        // Получаем экземпляр синглтона
+        animalDAO = AnimalDAO.getInstance();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        // Получаем всех животных из базы данных
-        AnimalDAO animalDAO = new AnimalDAO();
+
         List<Animal> animals = animalDAO.getAllAnimals();
-        System.out.println("animals in JSP: " + animals); //сообщение что животные переданны в jsp
+        System.out.println("animals in JSP: " + animals);
 
-        // Передаем список животных в JSP
-        request.setAttribute("animals", animals); //Записывает список животных в request, чтобы передать его на страницу animals.jsp.
-
-        // Перенаправляем запрос на JSP страницу для отображения
+        request.setAttribute("animals", animals);
         request.getRequestDispatcher("/animals.jsp").forward(request, response);
-        //Передаёт управление animals.jsp, которая получает список животных и отображает их.
     }
 }
