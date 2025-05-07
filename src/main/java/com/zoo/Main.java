@@ -39,10 +39,4 @@ public class Main {
     }
 
 
-//        // Удаляем животное
-//        int animalIdToDelete = 2; // животное с id 2
-//        animalDAO.deleteAnimal(animalIdToDelete);
-//        System.out.println("Животное с ID " + animalIdToDelete + " было удалено.");
-
-
 }

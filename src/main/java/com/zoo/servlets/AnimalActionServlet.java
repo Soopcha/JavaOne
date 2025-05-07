@@ -10,6 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+//сервлет, который обрабатывает POST-запросы
+//Использует AnimalService (Singleton), который внутри вызывает AnimalDAO, чтобы работать с БД
+// В отличие от AnimalServlet, который (GET), AnimalActionServlet изменяет данные (POST)
 
 public class AnimalActionServlet extends HttpServlet {
     private AnimalService animalService;

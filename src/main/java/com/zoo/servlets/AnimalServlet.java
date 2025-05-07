@@ -14,18 +14,19 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-//Этот класс отвечает за обработку HTTP-запросов, связанных с животными
-//Как связан с другими классами:
-//Он получает список животных из базы данных с помощью AnimalDAO
-//Передаёт этот список на страницу animals.jsp, где они отображаются
 
-public class AnimalServlet extends HttpServlet {
+//Сервлет — это контроллер. Он:
+//Получает HTTP-запрос от браузера.
+//Вызывает нужную бизнес-логику (через AnimalService → AnimalDAO).
+//Передаёт данные на JSP-страницу для отображения (в нашем случае animals.jsp).
+
+public class AnimalServlet extends HttpServlet { //Наследуемся от HttpServlet, значит — можем обрабатывать HTTP-запросы: GET, POST, и т.д.
     private AnimalService animalService;
 
     @Override
     public void init() throws ServletException {
         this.animalService = AnimalService.getInstance();
-    }
+    } //Мы инициализируем animalService, используя Singleton — getInstance()
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

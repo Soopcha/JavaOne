@@ -83,7 +83,6 @@ public class DatabaseInitializer {
                     }
                 }
 
-                // Разделяем SQL-запросы
                 String[] queries = sb.toString().split(";");
                 for (String query : queries) {
                     String trimmedQuery = query.trim();

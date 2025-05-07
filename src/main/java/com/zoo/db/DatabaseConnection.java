@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static final String DB_URL = "jdbc:h2:c:/lessons/prog/java/gavshin/my/1/JavaOne/src/main/java/com/zoo/db/zooDB";
-    private static final String DB_USER = "";  // По умолчанию H2 использует "sa"
+    private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
     private static final String DB_DRIVER = "org.h2.Driver";
 
@@ -21,6 +21,6 @@ public class DatabaseConnection {
             System.err.println("Ошибка SQL: " + e.getMessage());
             e.printStackTrace();
         }
-        return null;  // Если ошибка, вернуть null
+        return null;
     }
 }

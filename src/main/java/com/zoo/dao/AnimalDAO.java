@@ -6,15 +6,15 @@ import com.zoo.model.Animal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-//Этот класс выполняет операции с животными в БД
 //http://localhost:8080/JavaOne_war_exploded/animals
 
 // Этот класс выполняет CRUD-операции с таблицей animals
+//Singleton — это паттерн проектирования, который гарантирует, что у класса будет только один обьект на всё приложение.
 public class AnimalDAO {
 
-    private static AnimalDAO instance;
+    private static AnimalDAO instance; //Статическая переменная, где будет храниться единственный экземпляр класса
 
-    private AnimalDAO() {}
+    private AnimalDAO() {}//Приватный конструктор. Это не даёт создавать new AnimalDAO() извне. Только внутри класса
 
     public static synchronized AnimalDAO getInstance() {
         if (instance == null) {
@@ -22,6 +22,8 @@ public class AnimalDAO {
         }
         return instance;
     }
+    //Метод getInstance() возвращает уже созданный объект. Если он ещё не создан — создаёт
+    //synchronized нужен, если вдруг приложение многопоточное — чтобы два потока не создали 2 экземпляра
 
     // Получить список всех животных
     public List<Animal> getAllAnimals() {
