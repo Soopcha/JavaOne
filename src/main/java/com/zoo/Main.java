@@ -4,42 +4,34 @@ package com.zoo;
 import com.zoo.dao.AnimalDAO;
 import com.zoo.db.DatabaseConnection;
 import com.zoo.model.Animal;
+import com.zoo.service.AnimalService;
 
 public class Main {
     public static void main(String[] args) {
-        // Устанавливаем соединение с базой данных
         DatabaseConnection.getConnection();
 
-        // Получаем экземпляр AnimalDAO через синглтон
-        AnimalDAO animalDAO = AnimalDAO.getInstance();
+        AnimalService animalService = AnimalService.getInstance();
 
-        // Добавляем несколько животных
-        animalDAO.insertAnimal(new Animal(0, "Лев", "Потомок льва", 5, "Савана", "Здоров"));
-        animalDAO.insertAnimal(new Animal(0, "Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
+        // Добавляем животных через сервис
+        animalService.createAnimal(new Animal(0, "Лев", "Потомок льва", 5, "Савана", "Здоров"));
+        animalService.createAnimal(new Animal(0, "Тигр", "Амурский тигр", 3, "Лес", "Здоров"));
 
-        // Выводим все животных
+        // Получаем животных через сервис
         System.out.println("Все животные:");
-        for (Animal animal : animalDAO.getAllAnimals()) {
-            System.out.println(animal);
-        }
+        animalService.getAllAnimals().forEach(System.out::println);
 
-        // Выводим конкретного животного по ID
-        int animalId = 1; // например, по id 1
-        Animal animal = animalDAO.getAnimalById(animalId);
+        // Пример работы с конкретным животным
+        int animalId = 1;
+        Animal animal = animalService.getAnimalById(animalId);
         if (animal != null) {
-            System.out.println("Животное с ID " + animalId + ":");
-            System.out.println(animal);
-        } else {
-            System.out.println("Животное с ID " + animalId + " не найдено.");
-        }
+            System.out.println("Животное с ID " + animalId + ": " + animal);
 
-        // Обновляем данные животного
-        if (animal != null) {
+            // Обновление через сервис
             animal.setHealthStatus("Болезненно");
-            animalDAO.updateAnimal(animal);
-            System.out.println("Данные животного после обновления:");
-            System.out.println(animalDAO.getAnimalById(animalId));
+            animalService.updateAnimal(animal);
+            System.out.println("После обновления: " + animalService.getAnimalById(animalId));
         }
+
 
 //        // Удаляем животное
 //        int animalIdToDelete = 2; // животное с id 2

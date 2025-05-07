@@ -3,6 +3,7 @@ package com.zoo.servlets;
 import com.zoo.dao.AnimalDAO;
 import com.zoo.model.Animal;
 
+import com.zoo.service.AnimalService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,12 +20,11 @@ import java.util.List;
 //Передаёт этот список на страницу animals.jsp, где они отображаются
 
 public class AnimalServlet extends HttpServlet {
-    private AnimalDAO animalDAO;
+    private AnimalService animalService;
 
     @Override
     public void init() throws ServletException {
-        // Получаем экземпляр синглтона
-        animalDAO = AnimalDAO.getInstance();
+        this.animalService = AnimalService.getInstance();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AnimalServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        List<Animal> animals = animalDAO.getAllAnimals();
+        List<Animal> animals = animalService.getAllAnimals();
         System.out.println("animals in JSP: " + animals);
 
         request.setAttribute("animals", animals);

@@ -12,13 +12,10 @@ import java.util.List;
 // Этот класс выполняет CRUD-операции с таблицей animals
 public class AnimalDAO {
 
-    // Экземпляр синглтона
     private static AnimalDAO instance;
 
-    // Приватный конструктор
     private AnimalDAO() {}
 
-    // Метод для получения экземпляра
     public static synchronized AnimalDAO getInstance() {
         if (instance == null) {
             instance = new AnimalDAO();
