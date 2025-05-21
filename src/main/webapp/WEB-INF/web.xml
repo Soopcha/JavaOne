@@ -54,5 +54,25 @@
     <url-pattern>/ticketAction</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <servlet-class>com.zoo.servlets.EmployeeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <url-pattern>/employees</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EmployeeActionServlet</servlet-name>
+    <servlet-class>com.zoo.servlets.EmployeeActionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EmployeeActionServlet</servlet-name>
+    <url-pattern>/employeeAction</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>

@@ -206,7 +206,11 @@
   <input type="submit" class="back-button" value="Назад на главную">
 </form>
 
+<form action="employees" method="get">
+  <input type="submit" value="Перейти к сотрудникам">
+</form>
 <script>
+
   function fillEditForm(id, visitorName, price, purchaseDate) {
     document.getElementById('edit-id').value = id;
     document.getElementById('edit-visitorName').value = visitorName;

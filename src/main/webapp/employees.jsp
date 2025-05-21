@@ -144,35 +144,33 @@
 </head>
 <body>
 
-<h1>Список животных</h1>
+<h1>Список сотрудников</h1>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Имя</th>
-        <th>Вид</th>
-        <th>Возраст</th>
-        <th>Среда</th>
-        <th>Здоровье</th>
+        <th>ФИО</th>
+        <th>Должность</th>
+        <th>Зарплата</th>
+        <th>Телефон</th>
         <th>Действия</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="animal" items="${animals}">
+    <c:forEach var="employee" items="${employees}">
         <tr>
-            <td>${animal.id}</td>
-            <td>${animal.name}</td>
-            <td>${animal.species}</td>
-            <td>${animal.age}</td>
-            <td>${animal.habitat}</td>
-            <td>${animal.healthStatus}</td>
+            <td>${employee.id}</td>
+            <td>${employee.fullName}</td>
+            <td>${employee.position}</td>
+            <td>${employee.salary}</td>
+            <td>${employee.phone}</td>
             <td>
                 <input type="button" value="Редактировать"
-                       onclick="fillEditForm('${animal.id}', '${animal.name}', '${animal.species}', '${animal.age}', '${animal.habitat}', '${animal.healthStatus}')"/>
+                       onclick="fillEditForm('${employee.id}', '${employee.fullName}', '${employee.position}', '${employee.salary}', '${employee.phone}')"/>
 
-                <form method="post" action="animalAction" style="display:inline">
-                    <input type="hidden" name="id" value="${animal.id}"/>
+                <form method="post" action="employeeAction" style="display:inline">
+                    <input type="hidden" name="id" value="${employee.id}"/>
                     <input type="hidden" name="action" value="delete"/>
                     <input type="submit" value="Удалить"/>
                 </form>
@@ -182,52 +180,48 @@
     </tbody>
 </table>
 
-<!-- ===== Добавление нового животного ===== -->
-<h2>Добавить новое животное</h2>
-<form method="post" action="animalAction">
+<!-- Форма добавления нового сотрудника -->
+<h2>Добавить нового сотрудника</h2>
+<form method="post" action="employeeAction">
     <input type="hidden" name="id" value="0"/>
-    Имя: <input type="text" name="name"/><br>
-    Вид: <input type="text" name="species"/><br>
-    Возраст: <input type="number" name="age"/><br>
-    Среда обитания: <input type="text" name="habitat"/><br>
-    Состояние здоровья: <input type="text" name="healthStatus"/><br>
+    ФИО: <input type="text" name="fullName"/><br>
+    Должность: <input type="text" name="position"/><br>
+    Зарплата: <input type="number" step="0.01" name="salary"/><br>
+    Телефон: <input type="text" name="phone"/><br>
     <input type="submit" value="Добавить"/>
 </form>
 
-<!-- ===== Редактирование животного ===== -->
-<h2>Редактировать животное</h2>
-<form method="post" action="animalAction">
+<!-- Форма редактирования сотрудника -->
+<h2>Редактировать сотрудника</h2>
+<form method="post" action="employeeAction">
     ID: <input type="number" name="id" id="edit-id" readonly/><br>
-    Имя: <input type="text" name="name" id="edit-name"/><br>
-    Вид: <input type="text" name="species" id="edit-species"/><br>
-    Возраст: <input type="number" name="age" id="edit-age"/><br>
-    Среда обитания: <input type="text" name="habitat" id="edit-habitat"/><br>
-    Состояние здоровья: <input type="text" name="healthStatus" id="edit-healthStatus"/><br>
+    ФИО: <input type="text" name="fullName" id="edit-fullName"/><br>
+    Должность: <input type="text" name="position" id="edit-position"/><br>
+    Зарплата: <input type="number" step="0.01" name="salary" id="edit-salary"/><br>
+    Телефон: <input type="text" name="phone" id="edit-phone"/><br>
     <input type="submit" value="Обновить"/>
 </form>
 
-<!-- Кнопка назад -->
-<form action="index.jsp" method="get">
-    <input type="submit" class="back-button" value="Назад на главную">
+<!-- Кнопки навигации -->
+<form action="animals" method="get">
+    <input type="submit" value="Перейти к животным">
 </form>
-<!-- Кнопка перехода к билетам -->
+
 <form action="tickets" method="get">
     <input type="submit" value="Перейти к билетам">
 </form>
 
-<form action="employees" method="get">
-    <input type="submit" value="Перейти к сотрудникам">
+<form action="index.jsp" method="get">
+    <input type="submit" class="back-button" value="Назад на главную">
 </form>
 
-<!-- ===== JavaScript для заполнения формы редактирования ===== -->
 <script>
-    function fillEditForm(id, name, species, age, habitat, healthStatus) {
+    function fillEditForm(id, fullName, position, salary, phone) {
         document.getElementById('edit-id').value = id;
-        document.getElementById('edit-name').value = name;
-        document.getElementById('edit-species').value = species;
-        document.getElementById('edit-age').value = age;
-        document.getElementById('edit-habitat').value = habitat;
-        document.getElementById('edit-healthStatus').value = healthStatus;
+        document.getElementById('edit-fullName').value = fullName;
+        document.getElementById('edit-position').value = position;
+        document.getElementById('edit-salary').value = salary;
+        document.getElementById('edit-phone').value = phone;
         window.scrollTo(0, document.body.scrollHeight);
     }
 </script>
