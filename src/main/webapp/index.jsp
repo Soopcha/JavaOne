@@ -27,7 +27,7 @@
         .enter-button {
             padding: 15px 30px;
             font-size: 1.2em;
-            background-color: #b37766;
+            background-color: #c65b61;
             color: white;
             border: none;
             border-radius: 10px;
@@ -36,7 +36,7 @@
             text-decoration: none;
         }
         .enter-button:hover {
-            background-color: #b37766;
+            background-color: #c65b61;
         }
     </style>
 </head>

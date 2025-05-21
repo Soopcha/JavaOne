@@ -33,12 +33,12 @@
         }
 
         th {
-            background-color: #b37766;
+            background-color: #c65b61;
             color: white;
         }
 
         input[type="submit"], input[type="button"] {
-            background-color: #b37766;
+            background-color: #c65b61;
             color: white;
         }
 
@@ -76,7 +76,7 @@
 
 
         th {
-            background-color: #b37766;
+            background-color: #c65b61;
             color: white;
         }
 
@@ -93,7 +93,7 @@
         }
 
         input[type="submit"], input[type="button"] {
-            background-color: #b37766;
+            background-color: #c65b61;
             color: white;
             border: none;
             padding: 8px 16px;
@@ -103,7 +103,7 @@
         }
 
         input[type="submit"]:hover, input[type="button"]:hover {
-            background-color: #b37766;
+            background-color: #c65b61;
         }
 
         form {
@@ -209,6 +209,10 @@
 <!-- Кнопка назад -->
 <form action="index.jsp" method="get">
     <input type="submit" class="back-button" value="Назад на главную">
+</form>
+<!-- Кнопка перехода к билетам -->
+<form action="tickets" method="get">
+    <input type="submit" value="Перейти к билетам">
 </form>
 
 <!-- ===== JavaScript для заполнения формы редактирования ===== -->

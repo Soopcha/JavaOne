@@ -34,5 +34,25 @@
     <url-pattern>/animalAction</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TicketServlet</servlet-name>
+    <servlet-class>com.zoo.servlets.TicketServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TicketServlet</servlet-name>
+    <url-pattern>/tickets</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TicketActionServlet</servlet-name>
+    <servlet-class>com.zoo.servlets.TicketActionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TicketActionServlet</servlet-name>
+    <url-pattern>/ticketAction</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
